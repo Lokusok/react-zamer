@@ -1,3 +1,4 @@
+import { TWorkerEvents } from '@src/types';
 import { TOptions } from './types';
 
 class WorkerService {
@@ -21,10 +22,10 @@ class WorkerService {
   /**
    * Отослать событие воркеру
    */
-  sendMessage(event: string, payload?: any) {
+  sendMessage(event: TWorkerEvents, payload?: any) {
     if (!this.worker) return;
 
-    this.worker.postMessage({ type: `exec/${event}`, payload });
+    this.worker.postMessage({ type: event, payload });
   }
 
   /**

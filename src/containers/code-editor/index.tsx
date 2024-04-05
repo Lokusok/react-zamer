@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 
 import TextareaCodeEditor from '@uiw/react-textarea-code-editor';
 
-import { Box, Button, HStack, Text } from '@chakra-ui/react';
+import { Box, Button, Grid, GridItem, Text } from '@chakra-ui/react';
 
 import SliderTime from '../slider-time';
 
@@ -86,19 +86,27 @@ function CodeEditor() {
               onFocus={handlers.onEditorFocus}
               onBlur={handlers.onEditorBlur}
             />
-            <StopExec position={'absolute'} right={-50} top={0} />
+            <StopExec
+              position={'absolute'}
+              right={{ base: 0, lg: -50 }}
+              top={{ base: -50, lg: 0 }}
+            />
           </Box>
-          <HStack justifyContent={'space-between'}>
-            <Button
-              onClick={handlers.onButtonClick}
-              isDisabled={options.isButtonDisabled}
-              colorScheme='blue'
-            >
-              Начать выполнение
-            </Button>
+          <Grid templateColumns={{ sm: 'repeat(2, 1fr)' }}>
+            <GridItem justifySelf={{ base: 'center', sm: 'start' }}>
+              <Button
+                onClick={handlers.onButtonClick}
+                isDisabled={options.isButtonDisabled}
+                colorScheme='blue'
+              >
+                Начать выполнение
+              </Button>
+            </GridItem>
 
-            <SliderTime width={'265px'} />
-          </HStack>
+            <GridItem justifySelf={{ base: 'center', sm: 'end' }}>
+              <SliderTime width={'265px'} />
+            </GridItem>
+          </Grid>
         </Box>
       </Box>
     </>

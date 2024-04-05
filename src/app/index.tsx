@@ -8,6 +8,8 @@ import workerService from '@src/worker-service';
 
 import { useToast } from '@chakra-ui/react';
 
+import { TWorkerEvents } from '@src/types';
+
 function App() {
   const timer = useRef<number | null>(null);
   const toast = useToast();
@@ -16,7 +18,9 @@ function App() {
     workerService.initWorker(new URL('../remote/worker.ts', import.meta.url), {
       onMessage: ({ data }) => {
         console.log('in app:', data);
-        if (data.type === 'exec/end') {
+        const eventType = data.type as TWorkerEvents;
+
+        if (eventType === 'exec/end') {
           executionStore.setIsExecution(false);
           toast({
             title: 'Код успешно выполнился.',
@@ -53,7 +57,7 @@ function App() {
       }, executionStore.executionTime * 1000);
     }
 
-    workerService.sendMessage('do', executionStore.code);
+    workerService.sendMessage('exec/do', executionStore.code);
   }, [executionStore.isExecution]);
 
   return <CodeEditor />;
