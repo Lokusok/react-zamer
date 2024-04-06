@@ -26,6 +26,7 @@ function StopExec(props: TProps) {
         size='md'
         icon={<CloseIcon />}
         onClick={handlers.onClick}
+        data-testid='stop-exec-btn'
       />
     </Tooltip>
   );

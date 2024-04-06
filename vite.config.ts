@@ -11,6 +11,9 @@ export default defineConfig({
       '@src': path.resolve(__dirname, 'src'),
     },
   },
+  server: {
+    port: 5000,
+  },
   build: {
     rollupOptions: {
       output: {
