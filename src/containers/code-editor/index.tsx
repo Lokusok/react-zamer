@@ -88,7 +88,10 @@ function CodeEditor() {
               top={{ base: -50, lg: 0 }}
             />
           </Box>
-          <Grid templateColumns={{ sm: 'repeat(2, 1fr)' }}>
+          <Grid
+            alignItems={'center'}
+            templateColumns={{ sm: 'repeat(2, 1fr)' }}
+          >
             <GridItem justifySelf={{ base: 'center', sm: 'start' }}>
               <Button
                 onClick={handlers.onButtonClick}
