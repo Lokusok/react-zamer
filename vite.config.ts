@@ -11,4 +11,15 @@ export default defineConfig({
       '@src': path.resolve(__dirname, 'src'),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        dir: 'dist',
+        entryFileNames: 'code.js',
+        assetFileNames: 'style.css',
+        chunkFileNames: 'chunk.js',
+        manualChunks: undefined,
+      },
+    },
+  },
 });

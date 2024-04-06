@@ -8,6 +8,10 @@ import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 
 import theme from './styles/theme';
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js');
+}
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>

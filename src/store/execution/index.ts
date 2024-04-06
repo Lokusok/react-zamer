@@ -1,9 +1,18 @@
-import { makeAutoObservable, spy } from 'mobx';
+import { makeAutoObservable } from 'mobx';
+
+const defaultCode = `function fibonacci(n) {
+  if (n <= 1) {
+      return n;
+  }
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+fibonacci(10);`;
 
 class ExecutionStore {
   isExecution: boolean = false;
   executionTime: number = 10;
-  code: string = 'function add(a, b) {\n  return a + b;\n}';
+  code: string = defaultCode;
 
   constructor() {
     makeAutoObservable(this);
@@ -21,12 +30,6 @@ class ExecutionStore {
     this.code = valCode;
   }
 }
-
-spy((event) => {
-  if (event.type === 'action') {
-    console.log(`${event.name} with args: ${event.arguments}`);
-  }
-});
 
 const executionStore = new ExecutionStore();
 
