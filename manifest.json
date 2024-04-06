@@ -1,0 +1,38 @@
+{
+  "theme_color": "#63B3ED",
+  "background_color": "#1A202C",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "name": "ZamerJS",
+  "short_name": "ZJS",
+  "description": "Приложение для замера выполнения JS-кода",
+  "icons": [
+    {
+      "src": "/safari-pinned-tab.svg",
+      "sizes": "128x128",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    },
+    {
+        "src": "/for-pwa/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    },
+    {
+        "src": "/for-pwa/icon-256x256.png",
+        "sizes": "256x256",
+        "type": "image/png"
+    },
+    {
+        "src": "/for-pwa/icon-384x384.png",
+        "sizes": "384x384",
+        "type": "image/png"
+    },
+    {
+        "src": "/for-pwa/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }
+  ]
+}
