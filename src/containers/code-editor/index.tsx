@@ -23,7 +23,6 @@ function CodeEditor() {
       e.preventDefault();
 
       const file = e.dataTransfer.files.item(0);
-      console.log(file);
       if (!file) return;
 
       const fileReader = new FileReader();
@@ -33,9 +32,6 @@ function CodeEditor() {
         const code = fileReader.result;
         console.log({ code });
         if (code) executionStore.setCode(code.toString());
-      };
-      fileReader.onerror = function () {
-        console.log('error: ', fileReader.error);
       };
     },
   };

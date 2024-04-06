@@ -20,6 +20,7 @@ function StopExec(props: TProps) {
     <Tooltip label={'Остановить'}>
       <IconButton
         {...props}
+        isDisabled={!executionStore.isExecution}
         colorScheme='red'
         aria-label='Прекратить выполнение'
         size='md'

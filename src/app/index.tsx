@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react';
 
-import CodeEditor from '@src/containers/code-editor';
 import { observer } from 'mobx-react-lite';
+import { useToast } from '@chakra-ui/react';
 
 import executionStore from '@src/store/execution';
-import workerService from '@src/worker-service';
 
-import { useToast } from '@chakra-ui/react';
+import CodeEditor from '@src/containers/code-editor';
+import workerService from '@src/worker-service';
 
 import { TWorkerEvents } from '@src/types';
 
@@ -17,21 +17,31 @@ function App() {
   useEffect(() => {
     workerService.initWorker(new URL('../remote/worker.ts', import.meta.url), {
       onMessage: ({ data }) => {
-        console.log('in app:', data);
         const eventType = data.type as TWorkerEvents;
 
-        if (eventType === 'exec/end') {
-          executionStore.setIsExecution(false);
-          toast({
-            title: 'Код успешно выполнился.',
-            status: 'success',
-            duration: 3000,
-            isClosable: true,
-          });
-
+        // Завершающие события - имеют одинаковую начальную логику
+        if (['exec/end', 'exec/error'].includes(eventType)) {
           if (timer.current) {
             clearTimeout(timer.current);
             timer.current = null;
+          }
+          executionStore.setIsExecution(false);
+
+          if (eventType === 'exec/end') {
+            toast({
+              title: 'Код успешно выполнился.',
+              status: 'success',
+              duration: 3000,
+              isClosable: true,
+            });
+          } else if (eventType === 'exec/error') {
+            toast({
+              position: 'top',
+              title: 'Синтаксическая ошибка в коде.',
+              status: 'error',
+              duration: 3000,
+              isClosable: true,
+            });
           }
         }
       },
@@ -48,6 +58,7 @@ function App() {
 
         executionStore.setIsExecution(false);
         workerService.reInit();
+
         toast({
           title: 'Код выполнялся слишком долго.',
           status: 'error',

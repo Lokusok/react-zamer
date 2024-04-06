@@ -10,7 +10,7 @@ class WorkerService {
    * Инициализация воркера
    */
   initWorker(path: string | URL, options: TOptions) {
-    this.worker = new Worker(path);
+    this.worker = new Worker(path, { type: 'module' });
     this.worker.postMessage({ type: 'exec/start' });
 
     this.path = path;
