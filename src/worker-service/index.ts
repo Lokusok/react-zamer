@@ -1,4 +1,3 @@
-import { TWorkerEvents } from '@src/types';
 import { TOptions } from './types';
 
 class WorkerService {

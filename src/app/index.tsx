@@ -8,14 +8,14 @@ import executionStore from '@src/store/execution';
 import CodeEditor from '@src/containers/code-editor';
 import workerService from '@src/worker-service';
 
-import { TWorkerEvents } from '@src/types';
+import ExecutionWorker from '../remote/worker?worker&url';
 
 function App() {
   const timer = useRef<number | null>(null);
   const toast = useToast();
 
   useEffect(() => {
-    workerService.initWorker(new URL('../remote/worker.ts', import.meta.url), {
+    workerService.initWorker(ExecutionWorker, {
       onMessage: ({ data }) => {
         const eventType = data.type as TWorkerEvents;
 

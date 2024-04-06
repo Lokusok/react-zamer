@@ -1,5 +1,3 @@
-import { TWorkerEvents } from '@src/types';
-
 type TActionsType = Partial<Record<TWorkerEvents, (...args: any[]) => void>>;
 
 const actions: TActionsType = {
