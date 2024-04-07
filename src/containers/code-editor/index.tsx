@@ -82,6 +82,7 @@ function CodeEditor() {
               onFocus={handlers.onEditorFocus}
               onBlur={handlers.onEditorBlur}
               data-testid='text-editor'
+              data-color-mode='dark'
             />
             <StopExec
               position={'absolute'}
