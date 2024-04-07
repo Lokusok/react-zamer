@@ -79,11 +79,13 @@ function CodeEditor() {
                 fontSize: 15,
                 minHeight: '200px',
                 fontFamily: 'monospace',
+                pointerEvents: executionStore.isExecution ? 'none' : 'all',
               }}
               onFocus={handlers.onEditorFocus}
               onBlur={handlers.onEditorBlur}
               data-testid='text-editor'
               data-color-mode='dark'
+              disabled={executionStore.isExecution}
             />
             <StopExec
               position={'absolute'}
