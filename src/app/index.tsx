@@ -3,16 +3,17 @@ import { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useToast } from '@chakra-ui/react';
 
-import executionStore from '@src/store/execution';
-
 import CodeEditor from '@src/containers/code-editor';
 import workerService from '@src/worker-service';
+import { useStore } from '@src/store';
 
 import ExecutionWorker from '../remote/worker?worker&url';
 
 function App() {
   const timer = useRef<number | null>(null);
   const toast = useToast();
+
+  const { executionStore } = useStore();
 
   useEffect(() => {
     workerService.initWorker(ExecutionWorker, {
@@ -46,7 +47,7 @@ function App() {
         }
       },
     });
-  }, []);
+  }, [executionStore, toast]);
 
   useEffect(() => {
     if (!executionStore.isExecution) return;
@@ -69,7 +70,7 @@ function App() {
     }
 
     workerService.sendMessage('exec/do', executionStore.code);
-  }, [executionStore.isExecution]);
+  }, [executionStore, executionStore.isExecution, toast]);
 
   return <CodeEditor />;
 }

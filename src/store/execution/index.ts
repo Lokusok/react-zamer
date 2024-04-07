@@ -9,7 +9,7 @@ const defaultCode = `function fibonacci(n) {
 
 fibonacci(10);`;
 
-class ExecutionStore {
+export class ExecutionStore {
   isExecution: boolean = false;
   executionTime: number = 10;
   code: string = defaultCode;

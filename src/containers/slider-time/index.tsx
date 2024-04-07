@@ -9,13 +9,15 @@ import {
   SliderTrack,
 } from '@chakra-ui/react';
 
-import executionStore from '@src/store/execution';
+import { useStore } from '@src/store';
 
 type TProps = {
   width: number | string;
 };
 
 function SliderTime(props: TProps) {
+  const { executionStore } = useStore();
+
   const labelStyles = {
     mt: '2',
     ml: '-2.5',

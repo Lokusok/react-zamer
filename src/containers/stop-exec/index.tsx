@@ -4,11 +4,13 @@ import { CloseIcon } from '@chakra-ui/icons';
 import { ButtonProps, IconButton, Tooltip } from '@chakra-ui/react';
 
 import workerService from '@src/worker-service';
-import executionStore from '@src/store/execution';
+import { useStore } from '@src/store';
 
 type TProps = ButtonProps;
 
 function StopExec(props: TProps) {
+  const { executionStore } = useStore();
+
   const handlers = {
     onClick: () => {
       workerService.reInit();

@@ -6,12 +6,13 @@ import TextareaCodeEditor from '@uiw/react-textarea-code-editor';
 import { Box, Button, Grid, GridItem, Text } from '@chakra-ui/react';
 
 import SliderTime from '../slider-time';
+import { useStore } from '@src/store';
 
-import executionStore from '@src/store/execution';
 import StopExec from '../stop-exec';
 
 function CodeEditor() {
   const [isFocused, setIsFocused] = useState(false);
+  const { executionStore } = useStore();
 
   const handlers = {
     onEditorChange: (e: React.ChangeEvent<HTMLTextAreaElement>) =>
