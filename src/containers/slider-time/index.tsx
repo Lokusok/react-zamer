@@ -45,6 +45,7 @@ function SliderTime(props: TProps) {
         onChange={handlers.onChange}
         min={0}
         max={100}
+        isDisabled={executionStore.isExecution}
       >
         <SliderMark value={25} {...labelStyles}>
           25
